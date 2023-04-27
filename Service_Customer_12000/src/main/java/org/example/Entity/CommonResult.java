@@ -2,12 +2,20 @@ package org.example.Entity;
 
 import java.io.Serializable;
 
-public class CommomResult<T> implements Serializable {
+public class CommonResult<T> implements Serializable {
     private Integer code;
     private String message;
     private T result;
 
+    public CommonResult(){
 
+    }
+
+    public CommonResult(Integer code, String message, T result){
+        this.code = code;
+        this.message = message;
+        this.result = result;
+    }
     public Integer getCode() {
         return code;
     }

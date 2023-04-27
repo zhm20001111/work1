@@ -1,12 +1,10 @@
 package org.example.Controller;
 
 
-import org.example.Entity.CommomResult;
+import org.example.Entity.CommonResult;
 import org.example.Entity.User;
 import org.example.Feign.UserFeignService;
-import org.example.Im.CustomerLoadBalanceConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cart")
-@LoadBalancerClient(name="provider-server",configuration = CustomerLoadBalanceConfiguration.class)
+//@LoadBalancerClient(name="provider-server",configuration = CustomerLoadBalanceConfiguration.class)
 public class CartController {
 
     @Autowired
@@ -26,9 +24,25 @@ public class CartController {
     }
 
     @GetMapping("/getUserById/{userId}")
-    public CommomResult<User> addCart(@PathVariable Integer userId){
+    public CommonResult<User> addCart(@PathVariable("userId") Integer userId){
         return userFeignService.getUserById(userId);
     }
+
+
+
+//    @GetMapping("/getUserById/{userId}")
+//    @CircuitBreaker(name = "backendA",fallbackMethod = "fallback")
+//    public CommomResult<User> addCart(@PathVariable Integer userId) throws InterruptedException{
+//        return userFeignService.getUserById(userId);
+//    }
+
+
+//    public CommomResult<User> fallback(Integer userId,Throwable e){
+//        e.printStackTrace();
+//        System.out.println("fallback以及调用！");
+//        CommomResult<User> result = new CommomResult<>(400,"当前用户不正常，请稍后再试！",null);
+//        return result;
+//    }
 
 
 //    @Autowired

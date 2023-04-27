@@ -1,13 +1,14 @@
 package org.example.Entity;
 
 public class User {
-    private Integer userId;
-    private String userName;
-    private String password;
+    private final Integer userId;
+    private final String userName;
+    private final String password;
+
     public  User(Integer userId, String userName, String password){
-        this.password = password;
         this.userName = userName;
         this.userId = userId;
+        this.password = password;
 
     }
 
@@ -15,23 +16,17 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+
 
     public String getUserNme() {
         return userName;
     }
 
-    public void setUserNme(String userNme) {
-        this.userName = userNme;
-    }
+
 
     public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+
 }
