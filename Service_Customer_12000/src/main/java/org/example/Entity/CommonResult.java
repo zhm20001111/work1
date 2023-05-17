@@ -10,7 +10,6 @@ public class CommonResult<T> implements Serializable {
     public CommonResult(){
 
     }
-
     public CommonResult(Integer code, String message, T result){
         this.code = code;
         this.message = message;
