@@ -32,12 +32,8 @@ public class CartController {
 
 
 //      @GetMapping("/addCart/{userId}")
-//      @CircuitBreaker(name = "backendA",fallbackMethod = "fallback")
-//      public CommonResult<User> addCart(@PathVariable Integer userId)throws InterruptedException{
-//        System.out.println("进入方法");
-//        Thread.sleep(10000L);
+//      public CommonResult<User> addCart(@PathVariable Integer userId){
 //        CommonResult<User> list =  userFeignService.getUserById(userId);
-//        System.out.println("离开方法");
 //        return  list;
 //      }
 //      public CommonResult<User> fallback(Integer userId,Throwable e){
@@ -46,6 +42,7 @@ public class CartController {
 //        CommonResult<User> result = new CommonResult<>(400,"当前用户不正常，请稍后再试！",null);
 //        return result;
 //      }
+
      @GetMapping("/addCart/{userId}")
      @CircuitBreaker(name = "backendB",fallbackMethod = "fallBack")
 //     @Bulkhead(name="bulkheadA",fallbackMethod = "fallBack",type=Bulkhead.Type.SEMAPHORE)
