@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Service_Provider_11001" />
         <module name="Service_Customer_12000" />
         <module name="Service_provider_11000" />
+        <module name="Config_server_15001" />
+        <module name="Config_server_15000" />
+        <module name="Service_Provider_11001" />
         <module name="Eureka_server_13001" />
         <module name="Eureka_server_13000" />
         <module name="Gateway_server_14000" />

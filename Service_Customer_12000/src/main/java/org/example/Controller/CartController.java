@@ -31,11 +31,11 @@ public class CartController {
     }
 
 
-//      @GetMapping("/addCart/{userId}")
-//      public CommonResult<User> addCart(@PathVariable Integer userId){
-//        CommonResult<User> list =  userFeignService.getUserById(userId);
-//        return  list;
-//      }
+      @GetMapping("/addCart/{userId}")
+      public CommonResult<User> addCart(@PathVariable Integer userId){
+        CommonResult<User> list =  userFeignService.getUserById(userId);
+        return  list;
+      }
 //      public CommonResult<User> fallback(Integer userId,Throwable e){
 //        e.printStackTrace();
 //        System.out.println("fallback已经调用！");
@@ -43,28 +43,28 @@ public class CartController {
 //        return result;
 //      }
 
-     @GetMapping("/addCart/{userId}")
-     @CircuitBreaker(name = "backendB",fallbackMethod = "fallBack")
-//     @Bulkhead(name="bulkheadA",fallbackMethod = "fallBack",type=Bulkhead.Type.SEMAPHORE)
-//     @RateLimiter(name="rate-limiterA",fallbackMethod = "fallBack")
-     public CompletableFuture<User> addCart(@PathVariable("userId") Integer userId) throws InterruptedException{
-         System.out.println("进入方法");
-//        Thread.sleep(1000L);
-         CompletableFuture<User> result = CompletableFuture.supplyAsync(()->{
-          return userFeignService.getUserById(userId).getResult();
-    });
-          System.out.println("离开方法");
-          return result;
-    }
-
-    public CompletableFuture<User> fallBack(Integer userId,Throwable e){
-        e.printStackTrace();
-        System.out.println("fallBack已经调用啦！");
-        CompletableFuture<User> result = CompletableFuture.supplyAsync(()->{
-            return new CommonResult<>(400,"当前用户服务不正常，请稍后再试",new User()).getResult();
-        });
-        return result;
-    }
+//     @GetMapping("/addCart/{userId}")
+//     @CircuitBreaker(name = "backendB",fallbackMethod = "fallBack")
+////     @Bulkhead(name="bulkheadA",fallbackMethod = "fallBack",type=Bulkhead.Type.SEMAPHORE)
+////     @RateLimiter(name="rate-limiterA",fallbackMethod = "fallBack")
+//     public CompletableFuture<User> addCart(@PathVariable("userId") Integer userId) throws InterruptedException{
+//         System.out.println("进入方法");
+////        Thread.sleep(1000L);
+//         CompletableFuture<User> result = CompletableFuture.supplyAsync(()->{
+//          return userFeignService.getUserById(userId).getResult();
+//    });
+//          System.out.println("离开方法");
+//          return result;
+//    }
+//
+//    public CompletableFuture<User> fallBack(Integer userId,Throwable e){
+//        e.printStackTrace();
+//        System.out.println("fallBack已经调用啦！");
+//        CompletableFuture<User> result = CompletableFuture.supplyAsync(()->{
+//            return new CommonResult<>(400,"当前用户服务不正常，请稍后再试",new User()).getResult();
+//        });
+//        return result;
+//    }
 
 
 
